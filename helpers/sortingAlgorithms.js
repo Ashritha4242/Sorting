@@ -97,6 +97,24 @@ const Compare = {
       return swaps
     }
   
+    insertionSort(array) {
+      const swaps = [];
+      for (let i = 1; i < array.length; i++) {
+        let j = i;
+        let temp = array[i];
+        while (j > 0 && array[j - 1] > temp) {
+          array[j] = array[j - 1];
+          swaps.push({ firstPosition: j, lastPosition: j - 1 });
+          j--;
+        }
+        array[j] = temp;
+        if (j !== i) {
+          swaps.push({ firstPosition: j, lastPosition: i });
+        }
+      }
+      return swaps;
+    }
+
     quickSort(array, compareFn = defaultCompare) {
       swaps = []
       quick(array, 0, array.length - 1, compareFn)
